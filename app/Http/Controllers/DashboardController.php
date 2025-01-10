@@ -15,13 +15,16 @@ class DashboardController extends Controller
                 'base_uri' => 'http://127.0.0.1:8000/api/'
             ]);
 
-            $response = $client->request('GET', 'event');
+            $response = $client->request('GET', 'peserta');
             $data = json_decode($response->getBody(), true);
             return view('dashboard', $data);
+
         } catch (\Exception $e) {
+
             return response()->json([
                 'error' => 'Failed to fetch data: ' . $e->getMessage(),
             ], 500);
+            
         }
     }
 }
